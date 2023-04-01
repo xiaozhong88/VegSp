@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:Display_item="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:id="@+id/setting">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="400dp"
+            android:layout_height="130dp"
+            android:text="@string/laserRanging"
+            android:textSize="45sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <!-- 距离1 -->
+    <com.atinytot.vegsp_v_1.mould_item.Display_item
+        android:id="@+id/distance1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        Display_item:parameter_btn="true"
+        Display_item:btn_name="距离1"
+        Display_item:parameter_text="1"
+        Display_item:unit="@drawable/height"
+        Display_item:state="@drawable/status_ok"/>
+
+    <!-- 距离2 -->
+    <com.atinytot.vegsp_v_1.mould_item.Display_item
+        android:id="@+id/distance2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        Display_item:parameter_btn="true"
+        Display_item:btn_name="距离2"
+        Display_item:parameter_text="1"
+        Display_item:unit="@drawable/height"
+        Display_item:state="@drawable/status_ok"/>
+
+    <!-- 距离3 -->
+    <com.atinytot.vegsp_v_1.mould_item.Display_item
+        android:id="@+id/distance3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        Display_item:parameter_btn="true"
+        Display_item:btn_name="距离3"
+        Display_item:parameter_text="1"
+        Display_item:unit="@drawable/height"
+        Display_item:state="@drawable/status_ok"/>
+
+    <!-- 距离4 -->
+    <com.atinytot.vegsp_v_1.mould_item.Display_item
+        android:id="@+id/distance4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        Display_item:parameter_btn="true"
+        Display_item:btn_name="距离4"
+        Display_item:parameter_text="1"
+        Display_item:unit="@drawable/height"
+        Display_item:state="@drawable/status_ok"/>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/plant_chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        android:paddingTop="10dp"
+        android:layout_marginBottom="30dp"/>
+
+</LinearLayout>

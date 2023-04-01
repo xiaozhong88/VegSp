@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:Display_item="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+<!--    <TextView-->
+<!--        android:id="@+id/fragmenttextview"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:text="1111"-->
+<!--        android:gravity="center"-->
+<!--        android:textSize="25sp"-->
+<!--        android:textColor="@color/black"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="400dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/name"
+            android:textSize="45sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
+
+        <TextView
+            android:id="@+id/vegfield_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="end"
+            android:text="@string/vegetablefield"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/vegetable_plot_select"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:backgroundTint="@android:color/transparent"
+            android:padding="5dp"
+            app:icon="@drawable/select"
+            app:iconSize="18dp"
+            app:iconTint="@null" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="5" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_img"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:backgroundTint="@android:color/transparent"
+            app:icon="@drawable/map_2d"
+            app:iconSize="30dp"
+            app:iconTint="@null" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="@string/environment"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="6" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/renovate_btn"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:backgroundTint="@android:color/transparent"
+            app:icon="@drawable/renovate"
+            app:iconSize="26dp"
+            app:iconTint="@null" />
+    </LinearLayout>
+
+    <!-- 土壤温度 -->
+    <com.atinytot.vegsp_v_1.mould_item.Display_item
+        android:id="@+id/soil_temp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        Display_item:btn_name="@string/soil_temperature"
+        Display_item:parameter_btn="true"
+        Display_item:parameter_text="1"
+        Display_item:state="@drawable/status_ok"
+        Display_item:unit="@drawable/temp" />
+    <!-- 土壤湿度 -->
+    <com.atinytot.vegsp_v_1.mould_item.Display_item
+        android:id="@+id/soil_humidity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        Display_item:btn_name="@string/soil_humidity"
+        Display_item:parameter_btn="true"
+        Display_item:parameter_text="1"
+        Display_item:state="@drawable/status_ok"
+        Display_item:unit="@drawable/percent" />
+    <!-- 空气温度 -->
+    <com.atinytot.vegsp_v_1.mould_item.Display_item
+        android:id="@+id/air_temp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        Display_item:btn_name="@string/air_temperature"
+        Display_item:parameter_btn="true"
+        Display_item:parameter_text="1"
+        Display_item:state="@drawable/status_ok"
+        Display_item:unit="@drawable/temp" />
+    <!-- 空气湿度 -->
+    <com.atinytot.vegsp_v_1.mould_item.Display_item
+        android:id="@+id/air_humidity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        Display_item:btn_name="@string/air_humidity"
+        Display_item:parameter_btn="true"
+        Display_item:parameter_text="1"
+        Display_item:state="@drawable/status_ok"
+        Display_item:unit="@drawable/percent" />
+    <!-- 光照强度 -->
+    <com.atinytot.vegsp_v_1.mould_item.Display_item
+        android:id="@+id/hv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        Display_item:btn_name="@string/beam"
+        Display_item:parameter_btn="true"
+        Display_item:parameter_text="1"
+        Display_item:state="@drawable/status_ok"
+        Display_item:unit="@drawable/hv" />
+    <!-- 二氧化碳浓度 -->
+    <com.atinytot.vegsp_v_1.mould_item.Display_item
+        android:id="@+id/CO2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        Display_item:btn_name="@string/CO2concentration"
+        Display_item:parameter_btn="true"
+        Display_item:parameter_text="1"
+        Display_item:state="@drawable/status_ok"
+        Display_item:unit="@drawable/percent" />
+
+    <!--    <RelativeLayout-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="44dp"-->
+    <!--        android:gravity="center_vertical"-->
+    <!--        android:paddingStart="10dp"-->
+    <!--        android:paddingEnd="10dp">-->
+
+    <!--        <TextView-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="@string/device"-->
+    <!--            android:textSize="28sp" />-->
+    <!--    </RelativeLayout>-->
+
+    <!--    &lt;!&ndash; 高度 &ndash;&gt;-->
+    <!--    <com.example.vegsp.mould_item.Display_item-->
+    <!--        android:id="@+id/height"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="4dp"-->
+    <!--        Display_item:parameter_btn="true"-->
+    <!--        Display_item:btn_name="@string/height"-->
+    <!--        Display_item:parameter_text="1"-->
+    <!--        Display_item:unit="@drawable/height"-->
+    <!--        Display_item:state="@drawable/status_ok"/>-->
+    <!--    &lt;!&ndash; 透光率 &ndash;&gt;-->
+    <!--    <com.example.vegsp.mould_item.Display_item-->
+    <!--        android:id="@+id/transmittance"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        Display_item:parameter_btn="true"-->
+    <!--        Display_item:btn_name="@string/temperature"-->
+    <!--        Display_item:parameter_text="1"-->
+    <!--        Display_item:unit="@drawable/percent"-->
+    <!--        Display_item:state="@drawable/status_ok"/>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <Button-->
+<!--            android:id="@+id/publish_btn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="发布" />-->
+<!--        &lt;!&ndash;        <Button&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:id="@+id/subscirbe_btn"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:text="订阅"/>&ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/temp_tv"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="111"-->
+<!--            android:textSize="20sp" />-->
+<!--    </LinearLayout>-->
+
+</LinearLayout>

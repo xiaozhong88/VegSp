@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/bottom_nav">
+        <item
+            android:id="@+id/item_show"
+            android:icon="@drawable/show"
+            android:title="@string/show"/>
+        <item
+            android:id="@+id/item_circuit"
+            android:icon="@drawable/circuit"
+            android:title="@string/circuit"/>
+        <item
+            android:id="@+id/item_install"
+            android:icon="@drawable/install"
+            android:title="@string/install"/>
+    </group>
+</menu>

@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">VegSp_V_1</string>
+
+    <string name="name">环境状况</string>
+    <string name="laserRanging">激光测距</string>
+    <string name="vegetablefield">菜地选择</string>
+    <string name="show">显示区</string>
+    <string name="circuit">开关区</string>
+    <string name="install">设置区</string>
+    <string name="environment">环境参数</string>
+    <string name="condition">状态</string>
+    <string name="set_focus">设置中心</string>
+    <string name="soil_temperature">土壤温度</string>
+    <string name="soil_humidity">土壤湿度</string>
+    <string name="air_temperature">空气温度</string>
+    <string name="air_humidity">空气湿度</string>
+    <string name="beam">光照强度</string>
+    <string name="CO2concentration">二氧化碳浓度</string>
+    <string name="formaldehyde">甲醛</string>
+    <string name="height">高度</string>
+    <string name="transmittance">透光率</string>
+    <string name="img">图像</string>
+    <string name="device">设备状态</string>
+
+    <string name="data_key">DATA_KEY</string>
+    <string name="shp_name">SHP_NAME</string>
+</resources>
