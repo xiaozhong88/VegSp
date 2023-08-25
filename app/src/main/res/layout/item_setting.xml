@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="38dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/item_background"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingStart="6dp"
+    android:paddingEnd="8dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/item_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/nickname"
+        android:backgroundTint="@color/black"
+        android:layout_marginStart="2dp"/>
+
+    <TextView
+        android:id="@+id/item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/set_focus"
+        android:textColor="#050000"
+        android:textSize="15sp"
+        android:layout_marginStart="5dp"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/item_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:text="content"
+        android:textColor="#050000"
+        android:textSize="15sp" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/item_iright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@android:drawable/ic_menu_revert"
+        android:backgroundTint="@color/black" />
+</LinearLayout>

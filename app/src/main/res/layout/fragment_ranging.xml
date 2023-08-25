@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:Display_item="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/setting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="400dp"
+                    android:layout_height="130dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/laserRanging"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- 距离1 -->
+            <com.atinytot.vegsp_v_1.mould.Display_item
+                android:id="@+id/distance1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                Display_item:btn_name="A点"
+                Display_item:parameter_btn="true"
+                Display_item:parameter_text="1"
+                Display_item:state="@drawable/status_ok"
+                Display_item:unit="@drawable/height" />
+
+            <!-- 距离2 -->
+            <com.atinytot.vegsp_v_1.mould.Display_item
+                android:id="@+id/distance2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                Display_item:btn_name="B点"
+                Display_item:parameter_btn="true"
+                Display_item:parameter_text="1"
+                Display_item:state="@drawable/status_ok"
+                Display_item:unit="@drawable/height" />
+
+            <!-- 距离3 -->
+            <com.atinytot.vegsp_v_1.mould.Display_item
+                android:id="@+id/distance3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                Display_item:btn_name="C点"
+                Display_item:parameter_btn="true"
+                Display_item:parameter_text="1"
+                Display_item:state="@drawable/status_ok"
+                Display_item:unit="@drawable/height" />
+
+            <!-- 距离4 -->
+            <com.atinytot.vegsp_v_1.mould.Display_item
+                android:id="@+id/distance4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                Display_item:btn_name="D点"
+                Display_item:parameter_btn="true"
+                Display_item:parameter_text="1"
+                Display_item:state="@drawable/status_ok"
+                Display_item:unit="@drawable/height" />
+
+            <!-- 距离5 -->
+            <com.atinytot.vegsp_v_1.mould.Display_item
+                android:id="@+id/distance5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                Display_item:btn_name="E点"
+                Display_item:parameter_btn="true"
+                Display_item:parameter_text="1"
+                Display_item:state="@drawable/status_ok"
+                Display_item:unit="@drawable/height" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:text="生长状况：正常生长"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/plant_chart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:paddingTop="10dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

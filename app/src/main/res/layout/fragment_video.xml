@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/bottom_shadow" />
+
+    <com.google.android.exoplayer2.ui.StyledPlayerView
+        android:id="@+id/video"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_gravity="center"
+        android:background="@color/colorItemPressed"
+        android:scaleType="fitXY"
+        app:resize_mode="fill"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/bottom_shadow" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        tools:viewBindingIgnore="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            tools:viewBindingIgnore="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/left"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@android:color/transparent"
+                android:text="左转"
+                android:textColor="#333333"
+                app:icon="@drawable/left"
+                app:iconGravity="textTop"
+                app:iconSize="25dp"
+                app:iconTint="@null" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/right"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@android:color/transparent"
+                android:text="右转"
+                android:textColor="#333333"
+                app:icon="@drawable/right"
+                app:iconGravity="textTop"
+                app:iconSize="25dp"
+                app:iconTint="@null" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <android.opengl.GLSurfaceView
+        android:id="@+id/opengl_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp" />
+
+</LinearLayout>

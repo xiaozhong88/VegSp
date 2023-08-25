@@ -1,0 +1,125 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.atinytot.vegsp_v_1"
+        minSdk 27
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
+            }
+        }
+//        // Add this line
+//        multiDexEnabled true
+//        // Add this line
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = ["android.enableJetifier": "true"]
+//            }
+//        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+// 控件绑定
+    buildFeatures {
+        viewBinding true
+    }
+
+    configurations {
+//        compile.exclude group: 'com.android.support', module: 'support-v4'
+        all {
+            exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel-ktx'
+        }
+    }
+
+// 自定义打包名称
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "VegSp_v${versionCode}.apk"
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // navigation viewmodel
+    implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    implementation 'androidx.navigation:navigation-ui:2.5.3'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+
+    // 物联网连接
+    api 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+    implementation files('libs/org.eclipse.paho.client.mqttv3-1.2.5.jar')
+
+//    implementation 'com.github.StevenDXC:DxLoadingButton:2.4'
+//    implementation 'com.github.SimformSolutionsPvtLtd:SSJetPackComposeProgressButton:1.0.7'
+//    implementation 'com.github.timonknispel:KTLoadingButton:1.2.0'
+    // 加载按钮
+    implementation 'com.github.FlodCoding:LoadingButton:1.1.0-alpha01'
+
+//    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    // 画图
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    // 进度条
+    implementation 'com.github.lzyzsd:circleprogress:1.2.1'
+    // 仪表盘
+    implementation 'com.github.anastr:speedviewlib:1.6.0'
+    // 动图
+//    implementation 'com.airbnb.android:lottie:6.1.0'
+    // 多线程页面交互
+    implementation 'org.greenrobot:eventbus:3.3.1'
+    // glide图片加载
+//    implementation group: 'com.github.bumptech.glide', name: 'glide', version: '4.13.2'
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    // 媒体播放库
+    implementation 'com.google.android.exoplayer:exoplayer:2.18.1'
+//    // https://mvnrepository.com/artifact/com.google.android.exoplayer/extension-rtmp
+    // SRS（Simple-RTMP-Server）开源项目的一个扩展库，提供了基于ExoPlayer的RTMP直播播放器
+    implementation 'com.google.android.exoplayer:extension-rtmp:2.18.1'
+    // 顶部状态栏
+//    implementation 'com.github.Ye-Miao:StatusBarUtil:1.7.5'
+    // Room数据库
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    // optional - RxJava3 support for Room
+    implementation "androidx.room:room-rxjava3:$room_version"
+    // To use Kotlin annotation processing tool (kapt)
+//    kapt "androidx.room:room-compiler:$room_version"
+}

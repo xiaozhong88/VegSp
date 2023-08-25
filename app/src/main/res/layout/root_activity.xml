@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:openDrawer="start">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/top_primary"
+        app:elevation="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/myViewPager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.atinytot.vegsp_v_1.mould.CenterTitleToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:fitsSystemWindows="true"
+            android:layout_marginTop="10dp"
+            app:titleTextAppearance="@style/TKToolbarTitleAppearance" />
+        <!--        <androidx.appcompat.widget.Toolbar-->
+        <!--            android:id="@+id/toolbar"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:background="@color/top_primary"-->
+        <!--            android:fitsSystemWindows="true" />-->
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/myViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/selector_item"
+        app:layout_constraintBottom_toTopOf="@id/navbar"
+        app:layout_constraintTop_toBottomOf="@+id/appbar" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        android:elevation="1dp"
+        android:paddingTop="0dp"
+        app:backgroundTint="#37388E3C"
+        app:elevation="0.1dp"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@drawable/bottom_navigation_selector"
+        app:layout_constraintBottom_toTopOf="@+id/line"
+        app:layout_constraintTop_toBottomOf="@+id/myViewPager"
+        app:menu="@menu/bottom_nav_menu" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/bottom_shadow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navbar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

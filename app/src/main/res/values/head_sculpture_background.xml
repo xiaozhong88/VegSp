@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="circleImageView">
+        <item name="cornerFamily">rounded</item>
+        <!--此处指定为50%形状即圆形-->
+        <item name="cornerSize">50%</item>
+        <item name="strokeColor">@color/black</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="android:padding">20dp</item>
+    </style>
+</resources>

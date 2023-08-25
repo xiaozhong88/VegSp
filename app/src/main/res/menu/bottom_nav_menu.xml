@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/bottom_nav">
+        <item
+            android:id="@+id/displayFragment"
+            android:icon="@drawable/show"
+            android:title="@string/show"/>
+        <item
+            android:id="@+id/videoFragment"
+            android:icon="@drawable/video"
+            android:title="监控区"/>
+        <item
+            android:id="@+id/rangingFragment"
+            android:icon="@drawable/ranging"
+            android:title="测量区"/>
+    </group>
+</menu>
