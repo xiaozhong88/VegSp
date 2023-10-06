@@ -7,8 +7,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.atinytot.vegsp_v_1.domain.Environment;
-import com.atinytot.vegsp_v_1.model.repository.DisplayRepository;
-import com.atinytot.vegsp_v_1.model.repository.DisplayRepositoryCallback;
+import com.atinytot.vegsp_v_1.models.repository.DisplayRepository;
+import com.atinytot.vegsp_v_1.models.repository.DisplayRepositoryCallback;
 
 public class DisplayViewModel extends AndroidViewModel implements DisplayRepositoryCallback {
 

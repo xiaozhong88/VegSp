@@ -33,7 +33,7 @@ import java.util.Random;
 
 public class RangingFragment extends BaseFragment<FragmentRangingBinding, RangingViewModel> {
 
-    private static RangingFragment rangingFragment;
+    private static volatile RangingFragment rangingFragment;
     private FragmentRangingBinding binding;
     private RangingViewModel rangingViewModel;
     private Display_item distance1, distance2, distance3, distance4;
@@ -44,7 +44,7 @@ public class RangingFragment extends BaseFragment<FragmentRangingBinding, Rangin
     // TODO 画图线程
     private static Thread chartThread;
 
-    private RangingFragment() {
+    public RangingFragment() {
         super(FragmentRangingBinding::inflate, RangingViewModel.class, false);
     }
 
@@ -95,6 +95,17 @@ public class RangingFragment extends BaseFragment<FragmentRangingBinding, Rangin
             }
         });
     }
+
+    @Override
+    public void restoreFragmentState(@NonNull Bundle state) {
+
+    }
+
+//    @NonNull
+//    @Override
+//    public Bundle saveFragmentState() {
+//        return null;
+//    }
 
 //    @Override
 //    public void onCreate(@Nullable Bundle savedInstanceState) {

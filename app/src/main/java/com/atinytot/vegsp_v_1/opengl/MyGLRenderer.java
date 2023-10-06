@@ -1,17 +1,27 @@
 package com.atinytot.vegsp_v_1.opengl;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.opengl.GLES32;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 import android.os.SystemClock;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.atinytot.vegsp_v_1.R;
+import com.atinytot.vegsp_v_1.domain.VertexEvent;
 import com.atinytot.vegsp_v_1.utils.FileUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -20,6 +30,11 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class MyGLRenderer implements GLSurfaceView.Renderer {
     private static final String TAG = "MyGLRenderer";
+
+    static {
+        System.loadLibrary("native");
+    }
+
     private static final int COORDS_PER_VERTEX = 3;
     private static final int BYTES_PER_FLOAT = 4;
     private static final int VERTEX_COUNT = 500;
@@ -43,8 +58,23 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private List<float[]> mVertices;
     private int mVertexCount;
 
-    public MyGLRenderer(Context context) {
+    private AssetManager assetManager;
+
+    private native void ndkSurfaceCreated(AssetManager assetManager);
+    private native void ndkSurfaceChanged(int x, int y, int width, int height);
+    private native void ndkDrawFrame(List<float[]> mVertices, int mVertexCount);
+
+    public MyGLRenderer(Context context, AssetManager assetManager) {
         this.context = context;
+        this.assetManager = assetManager;
+
+        mVertices = new ArrayList<>();
+
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        } else {
+            Log.w(TAG, "MyGLRenderer: " + "请勿重复注册Eventbus");
+        }
     }
 
     public void setVertices(List<float[]> mVertices, int mVertexCount) {
@@ -52,64 +82,74 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         this.mVertexCount = mVertexCount;
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(@NonNull VertexEvent event) {
+        this.mVertices = event.getMVertices();
+        this.mVertexCount = event.getMVertexCount();
+    }
+
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
-        GLES32.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-//        initVertexBuffer();
-        initProgram();
+//        GLES32.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+////        initVertexBuffer();
+//        initProgram();
+//
+//        // 获取句柄
+//        mPositionHandle = GLES32.glGetAttribLocation(mProgram, "vPosition");
+//        mColorHandle = GLES32.glGetAttribLocation(mProgram, "vColor");
+//        mMVPMatrixHandle = GLES32.glGetUniformLocation(mProgram, "uMVPMatrix");
+//
+//        // 开启深度测试
+//        GLES32.glEnable(GLES32.GL_DEPTH_TEST);
 
-        // 获取句柄
-        mPositionHandle = GLES32.glGetAttribLocation(mProgram, "vPosition");
-        mColorHandle = GLES32.glGetAttribLocation(mProgram, "vColor");
-        mMVPMatrixHandle = GLES32.glGetUniformLocation(mProgram, "uMVPMatrix");
-
-        // 开启深度测试
-        GLES32.glEnable(GLES32.GL_DEPTH_TEST);
+        ndkSurfaceCreated(assetManager);
     }
 
     @Override
     public void onSurfaceChanged(GL10 unused, int width, int height) {
-        GLES32.glViewport(0, 0, width, height);
-        float aspectRatio = (float) width / height;
-        Matrix.perspectiveM(mProjectionMatrix, 0, 45, aspectRatio, 1f, 100f);
-        Matrix.setLookAtM(mViewMatrix, 0, 0f, 0f, -6f, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+//        GLES32.glViewport(0, 0, width, height);
+//        float aspectRatio = (float) width / height;
+//        Matrix.perspectiveM(mProjectionMatrix, 0, 45, aspectRatio, 1f, 100f);
+//        Matrix.setLookAtM(mViewMatrix, 0, 0f, 0f, -6f, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+        ndkSurfaceChanged(0, 0, width, height);
     }
 
     @Override
     public void onDrawFrame(GL10 unused) {
-        // 清空颜色缓冲区和深度缓冲区
-        GLES32.glClear(GLES32.GL_COLOR_BUFFER_BIT | GLES32.GL_DEPTH_BUFFER_BIT);
-        // Set the program to be used by OpenGL
-        GLES32.glUseProgram(mProgram);
-        long time = SystemClock.uptimeMillis() % 4000L;
-        float angle = 0.090f * ((int) time);
-        Matrix.setIdentityM(mModelMatrix, 0);
-        Matrix.rotateM(mModelMatrix, 0, angle, 0.0f, 1.0f, 0.0f);
-        // Calculate the projection and view transformation
-        Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
-        Matrix.multiplyMM(mMVPMatrix, 0, mMVPMatrix, 0, mModelMatrix, 0);
-        // Set the position attribute
-//        mPositionHandle = GLES32.glGetAttribLocation(mProgram, "vPosition");
-//        mVertexBuffer.position(0);
-//        GLES32.glVertexAttribPointer(mPositionHandle, POSITION_COMPONENT_COUNT, GLES32.GL_FLOAT, false, VERTEX_STRIDE, mVertexBuffer);
-//        GLES32.glEnableVertexAttribArray(mPositionHandle);
-        // Set the color attribute
-//        mColorHandle = GLES32.glGetAttribLocation(mProgram, "vColor");
-//        mVertexBuffer.position(POSITION_COMPONENT_COUNT);
-//        GLES32.glVertexAttribPointer(mColorHandle, COLOR_COMPONENT_COUNT, GLES32.GL_FLOAT, false, VERTEX_STRIDE, mVertexBuffer);
-//        GLES32.glEnableVertexAttribArray(mColorHandle);
-        // Set the MVP matrix
-//        mMVPMatrixHandle = GLES32.glGetUniformLocation(mProgram, "uMVPMatrix");
-        GLES32.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mMVPMatrix, 0);
-        // Draw the vertices
-//        GLES32.glDrawArrays(GLES32.GL_POINTS, 0, VERTEX_COUNT);
-
-        for (int i = 0; i < mVertexCount; i++) {
-            drawVertex(mVertices.get(i));
-        }
-        for (int i = 0; i < mVertexCount - 1; i++) {
-            drawLine(mVertices.get(i), mVertices.get(i + 1));
-        }
+//        // 清空颜色缓冲区和深度缓冲区
+//        GLES32.glClear(GLES32.GL_COLOR_BUFFER_BIT | GLES32.GL_DEPTH_BUFFER_BIT);
+//        // Set the program to be used by OpenGL
+//        GLES32.glUseProgram(mProgram);
+//        long time = SystemClock.uptimeMillis() % 4000L;
+//        float angle = 0.090f * ((int) time);
+//        Matrix.setIdentityM(mModelMatrix, 0);
+//        Matrix.rotateM(mModelMatrix, 0, angle, 0.0f, 1.0f, 0.0f);
+//        // Calculate the projection and view transformation
+//        Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
+//        Matrix.multiplyMM(mMVPMatrix, 0, mMVPMatrix, 0, mModelMatrix, 0);
+//        // Set the position attribute
+////        mPositionHandle = GLES32.glGetAttribLocation(mProgram, "vPosition");
+////        mVertexBuffer.position(0);
+////        GLES32.glVertexAttribPointer(mPositionHandle, POSITION_COMPONENT_COUNT, GLES32.GL_FLOAT, false, VERTEX_STRIDE, mVertexBuffer);
+////        GLES32.glEnableVertexAttribArray(mPositionHandle);
+//        // Set the color attribute
+////        mColorHandle = GLES32.glGetAttribLocation(mProgram, "vColor");
+////        mVertexBuffer.position(POSITION_COMPONENT_COUNT);
+////        GLES32.glVertexAttribPointer(mColorHandle, COLOR_COMPONENT_COUNT, GLES32.GL_FLOAT, false, VERTEX_STRIDE, mVertexBuffer);
+////        GLES32.glEnableVertexAttribArray(mColorHandle);
+//        // Set the MVP matrix
+////        mMVPMatrixHandle = GLES32.glGetUniformLocation(mProgram, "uMVPMatrix");
+//        GLES32.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mMVPMatrix, 0);
+//        // Draw the vertices
+////        GLES32.glDrawArrays(GLES32.GL_POINTS, 0, VERTEX_COUNT);
+//
+//        for (int i = 0; i < mVertexCount; i++) {
+//            drawVertex(mVertices.get(i));
+//        }
+//        for (int i = 0; i < mVertexCount - 1; i++) {
+//            drawLine(mVertices.get(i), mVertices.get(i + 1));
+//        }
+        ndkDrawFrame(mVertices, mVertexCount);
     }
 
 //    private void initVertexBuffer() {
@@ -192,7 +232,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                 .order(ByteOrder.nativeOrder())
                 .asFloatBuffer();
         vertexBuffer.put(vertex1[0]).put(vertex1[1]).put(vertex1[2]);
-        vertexBuffer.put(vertex2[0]).put(vertex2[1]).put(vertex1[2]);
+        vertexBuffer.put(vertex2[0]).put(vertex2[1]).put(vertex2[2]);
         vertexBuffer.position(0);
         GLES32.glVertexAttribPointer(mPositionHandle, 3, GLES32.GL_FLOAT, false, 0, vertexBuffer);
         GLES32.glEnableVertexAttribArray(mPositionHandle);

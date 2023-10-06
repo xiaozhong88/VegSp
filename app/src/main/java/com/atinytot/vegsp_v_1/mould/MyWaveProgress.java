@@ -20,7 +20,7 @@ import android.view.animation.LinearInterpolator;
 
 import androidx.core.content.ContextCompat;
 
-import com.atinytot.vegsp_v_1.BuildConfig;
+//import com.atinytot.vegsp_v_1.BuildConfig;
 import com.atinytot.vegsp_v_1.R;
 import com.atinytot.vegsp_v_1.utils.Constant;
 import com.atinytot.vegsp_v_1.utils.MiscUtil;
@@ -376,9 +376,9 @@ public class MyWaveProgress extends View {
 
     private void drawProgress(Canvas canvas) {
         float y = mCenterPoint.y - (mPercentPaint.descent() + mPercentPaint.ascent()) / 2;
-        if (BuildConfig.DEBUG) {
+//        if (BuildConfig.DEBUG) {
 //            Log.d(TAG, "mPercent = " + mPercent + "; mPrePercent = " + mPrePercent);
-        }
+//        }
         if (mPrePercent == 0.0f || Math.abs(mPercent - mPrePercent) >= 0.01f) {
             mPercentValue = String.format(Locale.getDefault(), "%.0f%%", mPercent * 100);
             mPrePercent = mPercent;
@@ -458,10 +458,10 @@ public class MyWaveProgress extends View {
                     startWaveAnimator();
                 }
 //                mValue = mPercent * mMaxValue;
-                if (BuildConfig.DEBUG) {
+//                if (BuildConfig.DEBUG) {
 //                    Log.d(TAG, "onAnimationUpdate: percent = " + mPercent
 //                            + ";value = " + mValue);
-                }
+//                }
                 invalidate();
             }
         });

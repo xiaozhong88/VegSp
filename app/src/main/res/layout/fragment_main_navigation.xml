@@ -7,11 +7,25 @@
     android:layout_height="match_parent"
     android:background="@color/transparent">
 
-        <com.atinytot.vegsp_v_1.mould.newton.NewtonCradleLoading
-            android:id="@+id/newton_cradle_loading"
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
-            android:layout_centerInParent="true"/>
+    <com.atinytot.vegsp_v_1.mould.newton.NewtonCradleLoading
+        android:id="@+id/newton_cradle_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true" />
+
+    <View
+        android:id="@+id/day_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/day_bg"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/night_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/night_bg"
+        android:visibility="gone"/>
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -32,6 +46,44 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             app:headerLayout="@layout/nav_header_root"
-            app:menu="@menu/vegetable_plot_menu" />
+            app:menu="@menu/vegetable_plot_menu">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="当前模式："
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/night_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="白天"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <com.vimalcvs.switchdn.DayNightSwitch
+                    android:id="@+id/switch_item"
+                    android:layout_width="62.7dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="10dp" />
+            </LinearLayout>
+        </com.google.android.material.navigation.NavigationView>
+
     </androidx.drawerlayout.widget.DrawerLayout>
 </RelativeLayout>

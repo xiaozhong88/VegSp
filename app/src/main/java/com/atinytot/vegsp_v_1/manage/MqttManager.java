@@ -4,9 +4,9 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.atinytot.vegsp_v_1.model.repository.DisplayRepository;
-import com.atinytot.vegsp_v_1.model.repository.RangingRepository;
-import com.atinytot.vegsp_v_1.model.repository.VideoRepository;
+import com.atinytot.vegsp_v_1.models.repository.DisplayRepository;
+import com.atinytot.vegsp_v_1.models.repository.RangingRepository;
+import com.atinytot.vegsp_v_1.models.repository.VideoRepository;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;

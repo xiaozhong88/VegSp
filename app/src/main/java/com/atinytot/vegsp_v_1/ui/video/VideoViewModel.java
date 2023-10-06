@@ -4,11 +4,8 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.SavedStateHandle;
 
-import com.atinytot.vegsp_v_1.factory.MqttManagerFactory;
-import com.atinytot.vegsp_v_1.manage.MqttManager;
-import com.atinytot.vegsp_v_1.model.repository.VideoRepository;
+import com.atinytot.vegsp_v_1.models.repository.VideoRepository;
 
 import org.json.JSONException;
 import org.json.JSONObject;

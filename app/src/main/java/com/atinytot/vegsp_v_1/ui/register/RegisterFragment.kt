@@ -5,7 +5,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.atinytot.vegsp_v_1.R
 import com.atinytot.vegsp_v_1.base.BaseFragment
@@ -42,9 +41,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
         viewModel?.apply {
             this.data.observe(viewLifecycleOwner) { user ->
                 if (user != null) {
-                    Toast.makeText(requireContext(), "用户已存在", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "用户已存在", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(requireContext(), "注册成功", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "注册成功", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -98,4 +97,12 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
             }
         }
     }
+
+    override fun restoreFragmentState(state: Bundle) {
+        TODO("Not yet implemented")
+    }
+
+//    override fun saveFragmentState(): Bundle {
+//        TODO("Not yet implemented")
+//    }
 }

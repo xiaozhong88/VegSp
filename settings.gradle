@@ -1,5 +1,12 @@
 pluginManagement {
     repositories {
+        // 改为阿里云的镜像地址
+        maven { setUrl("https://maven.aliyun.com/repository/central") }
+        maven { setUrl("https://maven.aliyun.com/repository/jcenter") }
+        maven { setUrl("https://maven.aliyun.com/repository/google") }
+        maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin") }
+        maven { setUrl("https://maven.aliyun.com/repository/public") }
+        maven { setUrl("https://jitpack.io") }
         gradlePluginPortal()
         google()
         mavenCentral()
@@ -25,6 +32,12 @@ dependencyResolutionManagement {
 //            url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin'
 //        }
 
+        // 改为阿里云的镜像地址
+        maven { setUrl("https://maven.aliyun.com/repository/central") }
+        maven { setUrl("https://maven.aliyun.com/repository/jcenter") }
+        maven { setUrl("https://maven.aliyun.com/repository/google") }
+        maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin") }
+        maven { setUrl("https://maven.aliyun.com/repository/public") }
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }

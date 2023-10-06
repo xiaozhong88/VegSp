@@ -1,8 +1,10 @@
 package com.atinytot.vegsp_v_1.view;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -14,6 +16,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.atinytot.vegsp_v_1.R;
 import com.atinytot.vegsp_v_1.adapter.FragmentAdapter;
 import com.atinytot.vegsp_v_1.databinding.ActivityMainBinding;
+import com.atinytot.vegsp_v_1.domain.ModeEvent;
 import com.atinytot.vegsp_v_1.mould.newton.NewtonCradleLoading;
 import com.atinytot.vegsp_v_1.ui.display.DisplayFragment;
 import com.atinytot.vegsp_v_1.ui.ranging.RangingFragment;
@@ -32,10 +35,18 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.FragmentManager;
+import android.app.UiModeManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.DisplayCutout;
 import android.view.Gravity;
@@ -50,6 +61,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final String TAG = "MainActivity";
     private ActivityMainBinding binding;
     // 底部导航栏+滑动视图
 //    private ViewPager2 myViewPager;
@@ -73,9 +85,33 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        Log.e("MainActivity", "onCreate: " + savedInstanceState);
         super.onCreate(savedInstanceState);
+
 //        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(ActivityMainBinding.inflate(getLayoutInflater()).getRoot());
+//        FragmentManager fragmentManager = getFragmentManager();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            Log.e("MainActivity", "onCreate: " + fragmentManager.getPrimaryNavigationFragment());
+//        }
+        if (savedInstanceState != null) {
+            Bundle save = savedInstanceState.getBundle("androidx.lifecycle.BundlableSavedStateRegistry.key");
+            // 获取包含片段信息的 Bundle
+            Bundle fragmentBundle = save.getBundle("android:support:fragments");
+//            Log.e("MainActivity", "onCreate: " + save.toString());
+
+            if (fragmentBundle != null) {
+                // 获取特定片段的状态
+                Bundle fragmentState = fragmentBundle.getBundle("state");
+
+                if (fragmentState != null) {
+                    // 获取片段标识符（tag）
+                    String tag = fragmentState.getString("tag");
+
+//                    Log.e("MainActivity", "onCreate: " + fragmentState.toString() + tag);
+                }
+            }
+        }
 
 //        drawerLayout = binding.app.findViewById(R.id.drawer_layout);
 //        getNotchParams();
@@ -176,6 +212,66 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // 会保留 newConfig.uiMode 的低两位（也就是白天黑夜模式位），UI_MODE_NIGHT_MASK 是一个位掩码常量
+        int newMode = newConfig.uiMode & Configuration.UI_MODE_NIGHT_MASK;
+
+//        switch (newMode) {
+//            case Configuration.UI_MODE_NIGHT_UNDEFINED:
+//                // 未定义模式，可以根据需要进行处理
+//                break;
+//            case Configuration.UI_MODE_NIGHT_NO:
+//                // 白天模式
+////                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                Log.e("updateTheme", "updateTheme: " + "白天模式");
+//                break;
+//            case Configuration.UI_MODE_NIGHT_YES:
+//                // 黑夜模式
+////                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//                getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//                Log.e("updateTheme", "updateTheme: " + "黑夜模式");
+//                break;
+//        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume: ");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG, "onPause: ");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+//        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy: ");
+    }
+
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void onModeEvent(@NonNull ModeEvent modeEvent) {
+//        if (modeEvent.getMode() == Configuration.UI_MODE_NIGHT_NO) {
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//        } else if (modeEvent.getMode() == Configuration.UI_MODE_NIGHT_YES) {
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//        } else {
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+//        }
+//    }
+
     @TargetApi(28)
     public void getNotchParams() {
         final View decorView = getWindow().getDecorView();
@@ -265,16 +361,4 @@ public class MainActivity extends AppCompatActivity {
 //        nickname.setText(msg);
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        EventBus.getDefault().register(this);
-//    }
-
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        EventBus.getDefault().removeAllStickyEvents();
-//        EventBus.getDefault().unregister(this);
-//    }
 }

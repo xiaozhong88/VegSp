@@ -4,12 +4,13 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    namespace 'com.atinytot.vegsp_v_1'
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.atinytot.vegsp_v_1"
-        minSdk 27
-        targetSdk 32
+        minSdk 24
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -31,6 +32,14 @@ android {
 //                arguments = ["android.enableJetifier": "true"]
 //            }
 //        }
+        externalNativeBuild {
+            cmake {
+                abiFilters "arm64-v8a"
+            }
+        }
+        ndk {
+            abiFilters "arm64-v8a"
+        }
     }
 
     buildTypes {
@@ -42,6 +51,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 
 // 控件绑定
@@ -62,11 +75,18 @@ android {
             outputFileName = "VegSp_v${versionCode}.apk"
         }
     }
+
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.22.1'
+        }
+    }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -122,4 +142,9 @@ dependencies {
     implementation "androidx.room:room-rxjava3:$room_version"
     // To use Kotlin annotation processing tool (kapt)
 //    kapt "androidx.room:room-compiler:$room_version"
+    // retrofit
+    implementation('com.squareup.retrofit2:retrofit:2.9.0')
+    implementation('com.squareup.retrofit2:converter-gson:2.9.0')
+    // 白天/黑夜模式 切换
+    implementation 'com.github.vimalcvs:Day-Night-Switch:1.0.3'
 }

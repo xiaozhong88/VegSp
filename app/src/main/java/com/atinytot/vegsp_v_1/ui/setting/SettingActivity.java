@@ -89,18 +89,13 @@ public class SettingActivity extends AppCompatActivity {
     /**
      * TODO 菜单被点击时的页面跳转
      */
-    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.man:
-                gender.setContent(item.getTitle().toString());
-                break;
-            case R.id.woman:
-                gender.setContent(item.getTitle().toString());
-                break;
-            default:
-                break;
+        int itemId = item.getItemId();
+        if (itemId == R.id.man) {
+            gender.setContent(item.getTitle().toString());
+        } else if (itemId == R.id.woman) {
+            gender.setContent(item.getTitle().toString());
         }
         return super.onContextItemSelected(item);
     }

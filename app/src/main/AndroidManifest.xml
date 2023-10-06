@@ -12,19 +12,26 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!--opengl-->
     <uses-feature
-        android:glEsVersion="0x00030002"
+        android:glEsVersion="0x00030000"
         android:required="true" />
     <!--AEP 可确保您的应用支持除 OpenGL 3.1 规范中描述的核心 OpenGL 扩展集之外的标准化扩展集-->
     <uses-feature
         android:name="android.hardware.opengles.aep"
         android:required="true" />
 
+
     <application
+        android:name=".view.App"
         android:allowBackup="true"
+        android:configChanges="keyboardHidden|orientation|screenSize|uiMode"
         android:icon="@mipmap/grass"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/grass"
@@ -39,9 +46,7 @@
 
         <activity
             android:name=".view.MainActivity"
-            android:configChanges="orientation|screenSize"
-            android:exported="true"
-            android:theme="@style/Theme.VegSp_V_1.NoActionBar">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

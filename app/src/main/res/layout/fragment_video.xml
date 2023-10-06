@@ -79,7 +79,12 @@
 
     </androidx.cardview.widget.CardView>
 
-    <android.opengl.GLSurfaceView
+<!--    <android.opengl.GLSurfaceView-->
+<!--        android:id="@+id/opengl_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginTop="20dp" />-->
+    <com.atinytot.vegsp_v_1.opengl.MyGLSurfaceView
         android:id="@+id/opengl_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

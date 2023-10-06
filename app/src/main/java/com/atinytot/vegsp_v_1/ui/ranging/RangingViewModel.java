@@ -1,23 +1,14 @@
 package com.atinytot.vegsp_v_1.ui.ranging;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.SavedStateHandle;
 
 import com.atinytot.vegsp_v_1.domain.Distance;
-import com.atinytot.vegsp_v_1.domain.Environment;
-import com.atinytot.vegsp_v_1.factory.MqttManagerFactory;
-import com.atinytot.vegsp_v_1.manage.MqttManager;
-import com.atinytot.vegsp_v_1.model.repository.RangingRepository;
-import com.atinytot.vegsp_v_1.model.repository.RangingRepositoryCallback;
-
-import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.atinytot.vegsp_v_1.models.repository.RangingRepository;
+import com.atinytot.vegsp_v_1.models.repository.RangingRepositoryCallback;
 
 public class RangingViewModel extends AndroidViewModel implements RangingRepositoryCallback {
 

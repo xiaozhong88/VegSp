@@ -1,5 +1,7 @@
 package com.atinytot.vegsp_v_1.ui.login
 
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -100,6 +102,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
                         // 加载动画完成
                         login.complete(true)
                         Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show()
+                        // 保存登录状态和用户名
+                        val sharedPreferences: SharedPreferences = requireContext().getSharedPreferences("MyPrefs", MODE_PRIVATE)
+                        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                        editor.putBoolean("isLoggedIn", true)
+                        editor.putString("username", user_s)
+                        editor.apply()
+                        // 页面跳转
                         findNavController().navigate(
                             R.id.action_loginFragment_to_mainNavigationFragment
                         )
@@ -109,7 +118,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
                     }
                 }
             }
-            // 隐藏键盘
+        // 隐藏键盘
 //                val imm =
 //                    requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 //                imm.hideSoftInputFromWindow(login.windowToken, 0)
@@ -123,5 +132,26 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
 //            val intent = Intent(context, RegisterActivity::class.java)
 //            startActivity(intent)
         }
+
+        val sharedPreferences: SharedPreferences = requireContext().getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+        if (isLoggedIn) {
+            // 用户已登录
+            Toast.makeText(context, "用户已登录", Toast.LENGTH_SHORT).show()
+            // 页面跳转
+            findNavController().navigate(
+                R.id.action_loginFragment_to_mainNavigationFragment
+            )
+        } else {
+            Toast.makeText(context, "用户未登录", Toast.LENGTH_SHORT).show()
+        }
     }
+
+    override fun restoreFragmentState(state: Bundle) {
+        TODO("Not yet implemented")
+    }
+
+//    override fun saveFragmentState(): Bundle {
+//        TODO("Not yet implemented")
+//    }
 }

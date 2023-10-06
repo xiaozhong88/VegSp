@@ -40,6 +40,7 @@ import java.util.List;
 import kotlin.jvm.functions.Function3;
 
 public class DisplayFragment extends BaseFragment<FragmentDisplayBinding, DisplayViewModel> {
+    private static final String TAG = "DisplayFragment";
 
 //    public DisplayFragment(@NonNull Function3<? super LayoutInflater, ? super ViewGroup, ? super Boolean, ? extends FragmentDisplayBinding> inflate,
 //                           @Nullable Class<DisplayViewModel> viewModelClass,
@@ -47,7 +48,7 @@ public class DisplayFragment extends BaseFragment<FragmentDisplayBinding, Displa
 //        super(inflate, viewModelClass, publicViewModelTag);
 //    }
 
-    private static DisplayFragment displayFragment = null;
+    private static volatile DisplayFragment displayFragment = null;
     private FragmentDisplayBinding binding;
     private DisplayViewModel displayViewModel;
 
@@ -135,7 +136,19 @@ public class DisplayFragment extends BaseFragment<FragmentDisplayBinding, Displa
             });
         }
 
+//        Log.e(TAG, "initFragment: " + getChildFragmentManager());
     }
+
+    @Override
+    public void restoreFragmentState(@NonNull Bundle state) {
+
+    }
+
+//    @NonNull
+//    @Override
+//    public Bundle saveFragmentState() {
+//        return null;
+//    }
 
 
 //    private static DisplayFragment displayFragment;
@@ -461,4 +474,5 @@ public class DisplayFragment extends BaseFragment<FragmentDisplayBinding, Displa
         displayViewModel.disconnect();
         displayViewModel.onCleared();
     }
+
 }

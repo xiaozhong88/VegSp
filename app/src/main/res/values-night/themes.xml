@@ -7,10 +7,41 @@
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/purple_500</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+<!--        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>-->
         <!-- Customize your theme here. -->
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--状态栏半透明状态:位置透明-->
+        <item name="android:windowTranslucentStatus">false</item>
+        <!--设置导航栏是否半透明的属性-->
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!--设置系统栏（包括状态栏和导航栏）是否绘制背景的属性-->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <!--Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!-- 状态栏主题 -->
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!--windowFullscreen、windowLayoutInDisplayCutoutMode、windowTranslucentStatus三个属性一起用可以隐藏状态栏的情况下将挖孔屏设备窗口延伸之任务栏区域-->
+        <!--全屏即无状态栏-->
+        <!--        <item name="android:windowFullscreen">true</item>-->
+        <!--全屏无状态栏窗口延伸情况：
+        never:永远不允许窗口延伸到刘海区域
+        shortEdges:始终允许窗口延伸到屏幕短边上的刘海区域，窗口永远不会延伸到屏幕长边上的刘海区域
+        default:没有设置为全屏显示模式，就允许窗口延伸到刘海区域，否则不允许-->
+<!--        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>-->
+    </style>
+
+    <style name="HintTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">9sp</item>
+    </style>
+
+    <style name="TKToolbarTitleAppearance_night" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#ffffff</item>
     </style>
 </resources>

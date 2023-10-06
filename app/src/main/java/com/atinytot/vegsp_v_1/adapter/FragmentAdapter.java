@@ -11,7 +11,7 @@ import java.util.List;
 
 public class FragmentAdapter extends FragmentStateAdapter {
 
-    private List<Fragment> fragmentList;
+    private final List<Fragment> fragmentList;
 
     public FragmentAdapter(@NonNull FragmentActivity fragmentActivity, List<Fragment> fragmentList) {
         super(fragmentActivity);

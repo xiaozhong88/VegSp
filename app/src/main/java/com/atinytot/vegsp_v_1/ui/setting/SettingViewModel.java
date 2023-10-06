@@ -8,8 +8,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.atinytot.vegsp_v_1.model.repository.Result;
-import com.atinytot.vegsp_v_1.model.repository.UserRepository;
+import com.atinytot.vegsp_v_1.models.repository.Result;
+import com.atinytot.vegsp_v_1.models.repository.UserRepository;
 import com.atinytot.vegsp_v_1.room.entity.User;
 
 public class SettingViewModel extends AndroidViewModel {
